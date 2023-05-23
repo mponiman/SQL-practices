@@ -4,6 +4,8 @@
 WITH load 
 AS
 (
+    -- taking the date from the timestamp 
+    -- use MAX to get the latest page load 
     SELECT user_id, timestamp::DATE AS date, MAX(timestamp) AS latest_load
     FROM facebook_web_log
     WHERE action = 'page_load'
@@ -13,22 +15,25 @@ AS
 exit 
 AS
 (
+    -- taking the date from the timestamp 
+    -- use MIN to get the earliest page exit
     SELECT user_id, timestamp::DATE AS date, MIN(timestamp) AS earliest_exit  
     FROM facebook_web_log
     WHERE action = 'page_exit'
     GROUP BY user_id, timestamp::DATE
 )
--- joining load and exit table 
+-- joining load and exit table
 SELECT e.user_id, AVG(e.earliest_exit - l.latest_load) AS avg_session 
 FROM load l
 INNER JOIN exit e
 ON e.user_id = l.user_id AND e.date = l.date
+-- to make sure that page exit is later than page load
 WHERE e.earliest_exit >= l.latest_load
 GROUP BY e.user_id;
 
 ###################################################################
 
---Using CTE
+--Using CTE & Case When Statement
 WITH CTE AS(
 SELECT user_id,
 timestamp::DATE AS date,
