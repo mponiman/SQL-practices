@@ -39,8 +39,7 @@ affected_from: datetime
 
 SELECT worker_title AS best_paid_title
 FROM title 
-WHERE worker_ref_id IN 
-    (SELECT worker_id 
-    FROM worker
-    WHERE salary = (SELECT MAX(SALARY)
-                    FROM worker))
+JOIN worker
+ON worker_ref_id = worker_id 
+WHERE salary = (SELECT MAX(salary) FROM worker)
+                    
