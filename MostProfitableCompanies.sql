@@ -23,6 +23,9 @@ profits: float
 assets: float
 rank: int
 forbeswebpage: varchar
+
+Hints:
+Use rank() function to ensure an edge cases.
 """
 
 SELECT company, profits
