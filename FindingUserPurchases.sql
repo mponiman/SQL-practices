@@ -1,6 +1,6 @@
 """
 Finding User Purchases
-
+https://platform.stratascratch.com/coding/10322-finding-user-purchases?code_type=1
 
 Interview Question Date: December 2020
 
