@@ -1,5 +1,6 @@
 """
 Risky Projects
+https://platform.stratascratch.com/coding/10304-risky-projects/solutions?code_type=1
 
 Interview Question Date: November 2020
 LinkedIn
